@@ -1,5 +1,4 @@
 import type { APIRoute } from "astro";
-import { XMLParser } from "fast-xml-parser";
 
 export const GET: APIRoute = async () => {
   const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
@@ -9,39 +8,11 @@ export const GET: APIRoute = async () => {
     const response = await fetch(rssUrl);
     const xml = await response.text();
 
-    const parser = new XMLParser({
-      ignoreAttributes: false,
-      attributeNamePrefix: "",
-    });
-
-    const json = parser.parse(xml);
-
-    const entries = json?.feed?.entry;
-
-    if (!entries) {
-      return new Response(JSON.stringify([]), { status: 200 });
-    }
-
-    const videos = (Array.isArray(entries) ? entries : [entries])
-      .slice(0, 3)
-      .map((video: any) => {
-        const videoId =
-          video["yt:videoId"] ||
-          video.id?.split(":").pop();
-
-        return {
-          videoId,
-          title: video.title,
-        };
-      })
-      .filter(v => v.videoId);
-
-    return new Response(JSON.stringify(videos), {
+    return new Response(xml, {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain" },
     });
   } catch (error) {
-    console.error("YouTube RSS Error:", error);
-    return new Response(JSON.stringify([]), { status: 200 });
+    return new Response("Fetch failed", { status: 500 });
   }
 };
