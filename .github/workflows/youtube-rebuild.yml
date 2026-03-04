@@ -1,0 +1,15 @@
+name: Auto Rebuild on YouTube Upload
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel Deploy Hook
+        run: |
+          curl -X POST "https://api.vercel.com/v1/integrations/deploy/prj_ShvmtcUH2No2YoFHnWmWA3QVLNsd/7W1HUYVg3E"
+          
