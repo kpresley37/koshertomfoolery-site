@@ -1,72 +1,22 @@
 ---
-import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Kosher Tomfoolery | Digital Command Center">
-  <section class="hero">
-    <h1>Kosher Tomfoolery</h1>
-    <p class="tagline">Tactical Gaming. Strategic Chaos.</p>
-  </section>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kosher Tomfoolery | Digital Command Center</title>
+  </head>
+  <body style="margin:0; font-family: system-ui; background:#0a0a0f; color:white;">
 
-  <section class="content-section">
-    <h2>Latest YouTube</h2>
-    <div class="video-grid">
-      <iframe 
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
-        frameborder="0" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
+    <section style="text-align:center; padding:100px 20px;">
+      <h1 style="font-size:3rem; margin-bottom:10px;">
+        Kosher Tomfoolery
+      </h1>
+      <p style="color:#8b5cf6; font-size:1.5rem;">
+        Tactical Gaming. Strategic Chaos.
+      </p>
+    </section>
 
-  <section class="content-section">
-    <h2>Live on Twitch</h2>
-    <iframe
-      src="https://player.twitch.tv/?channel=YOUR_CHANNEL&parent=koshertomfoolery-site.vercel.app"
-      height="480"
-      width="720"
-      allowfullscreen>
-    </iframe>
-  </section>
-
-  <section class="content-section">
-    <h2>TikTok Highlights</h2>
-    <blockquote 
-      class="tiktok-embed" 
-      cite="https://www.tiktok.com/@YOURUSERNAME/video/VIDEO_ID"
-      data-video-id="VIDEO_ID">
-    </blockquote>
-    <script async src="https://www.tiktok.com/embed.js"></script>
-  </section>
-</Layout>
-
-<style>
-.hero {
-  text-align: center;
-  padding: 100px 20px;
-  background: #0a0a0f;
-  color: white;
-}
-
-.hero h1 {
-  font-size: 3rem;
-}
-
-.tagline {
-  color: #8b5cf6;
-  font-size: 1.5rem;
-}
-
-.content-section {
-  padding: 60px 20px;
-  background: #111;
-  color: white;
-  text-align: center;
-}
-
-.video-grid iframe {
-  width: 100%;
-  max-width: 800px;
-  aspect-ratio: 16 / 9;
-}
-</style>
+  </body>
+</html>
