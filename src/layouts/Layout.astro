@@ -27,11 +27,30 @@ const { title } = Astro.props;
 
 <style>
   body {
-    margin: 0;
-    font-family: system-ui, sans-serif;
-    background: radial-gradient(circle at top, #141422, #0a0a0f 60%);
-    color: white;
-  }
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: radial-gradient(circle at 50% 0%, #1a1a2e, #0a0a0f 60%);
+  color: white;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139,92,246,0.15), transparent 70%);
+  filter: blur(80px);
+  animation: pulse 6s ease-in-out infinite alternate;
+  z-index: -1;
+}
+
+@keyframes pulse {
+  from { opacity: 0.4; }
+  to { opacity: 0.8; }
+}
 
   .nav {
     display: flex;
