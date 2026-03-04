@@ -1,22 +1,39 @@
 ---
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kosher Tomfoolery | Digital Command Center</title>
-  </head>
-  <body style="margin:0; font-family: system-ui; background:#0a0a0f; color:white;">
+<Layout title="Kosher Tomfoolery | Play Smart. Build Better.">
 
-    <section style="text-align:center; padding:100px 20px;">
-      <h1 style="font-size:3rem; margin-bottom:10px;">
-        Kosher Tomfoolery
-      </h1>
-      <p style="color:#8b5cf6; font-size:1.5rem;">
-        Play Smart. Build Better.
-      </p>
-    </section>
+  <section class="hero">
+    <h1>Kosher Tomfoolery</h1>
+    <p class="tagline">Play Smart. Build Better.</p>
+  </section>
 
-  </body>
-</html>
+</Layout>
+
+<style>
+.hero {
+  text-align: center;
+  padding: 140px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  color: #8b5cf6;
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #8b5cf6;
+  }
+  to {
+    text-shadow: 0 0 20px #8b5cf6;
+  }
+}
+</style>
