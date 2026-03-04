@@ -1,5 +1,18 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { XMLParser } from "fast-xml-parser";
+
+const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
+const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+
+const response = await fetch(rssUrl);
+const xml = await response.text();
+
+const parser = new XMLParser();
+const json = parser.parse(xml);
+
+const entries = json.feed.entry || [];
+const latestVideos = entries.slice(0, 3);
 ---
 
 <Layout title="Kosher Tomfoolery | Play Smart. Build Better.">
@@ -25,18 +38,19 @@ import Layout from "../layouts/Layout.astro";
     <div class="video-section">
   <h3>YouTube</h3>
 
-  <div class="video-grid">
-    <iframe
-      src="https://youtube.com/embed/r2rHQIG1U2U"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+  <div class="video-section">
+  <h3>YouTube</h3>
 
-    <iframe
-      src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2"
-      frameborder="0"
-      allowfullscreen>
-    </iframe>
+  <div class="video-grid">
+    {latestVideos.map(video => {
+      const videoId = video["yt:videoId"];
+      return (
+        <iframe
+          src={`https://www.youtube.com/embed/${videoId}`}
+          allowfullscreen>
+        </iframe>
+      );
+    })}
   </div>
 </div>
 
