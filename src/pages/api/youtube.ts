@@ -9,28 +9,39 @@ export const GET: APIRoute = async () => {
     const response = await fetch(rssUrl);
     const xml = await response.text();
 
-    const parser = new XMLParser();
+    const parser = new XMLParser({
+      ignoreAttributes: false,
+      attributeNamePrefix: "",
+    });
+
     const json = parser.parse(xml);
 
-    const entries = json?.feed?.entry || [];
+    const entries = json?.feed?.entry;
+
+    if (!entries) {
+      return new Response(JSON.stringify([]), { status: 200 });
+    }
+
     const videos = (Array.isArray(entries) ? entries : [entries])
       .slice(0, 3)
       .map((video: any) => {
         const videoId =
-          video?.["yt:videoId"] ||
-          video?.id?.split(":").pop();
+          video["yt:videoId"] ||
+          video.id?.split(":").pop();
 
         return {
           videoId,
-          title: video?.title,
+          title: video.title,
         };
-      });
+      })
+      .filter(v => v.videoId);
 
     return new Response(JSON.stringify(videos), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
+    console.error("YouTube RSS Error:", error);
     return new Response(JSON.stringify([]), { status: 200 });
   }
 };
