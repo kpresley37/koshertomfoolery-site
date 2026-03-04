@@ -1,11 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { XMLParser } from "fast-xml-parser";
-
-const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
-const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-
-let latestVideos = [];
 
 try {
   const response = await fetch(rssUrl);
@@ -40,34 +34,43 @@ try {
     </div>
   </section>
 
-  <section id="content" class="content">
-    <h2>Command Center</h2>
-    <p class="section-sub">
-      Live streams. Tactical breakdowns. Strategic plays.
-    </p>
-
-    <div class="video-section">
+  <div class="video-section">
   <h3>YouTube</h3>
-
-  <div class="video-grid">
-    {latestVideos.map(video => {
-      const videoId =
-        video?.["yt:videoId"] ||
-        video?.videoId ||
-        video?.id?.split(":").pop();
-
-      return videoId ? (
-        <iframe
-          width="560"
-          height="315"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          frameborder="0"
-          allowfullscreen>
-        </iframe>
-      ) : null;
-    })}
-  </div>
+  <div class="video-grid" id="youtube-videos"></div>
 </div>
+
+<script>
+  const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
+  const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+
+  async function loadVideos() {
+    try {
+      const response = await fetch(
+        `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`
+      );
+      const data = await response.json();
+
+      const container = document.getElementById("youtube-videos");
+
+      data.items.slice(0, 3).forEach(item => {
+        const videoId = item.link.split("v=")[1];
+
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+        iframe.width = "560";
+        iframe.height = "315";
+        iframe.allowFullscreen = true;
+
+        container.appendChild(iframe);
+      });
+    } catch (err) {
+      console.error("Failed to load YouTube videos:", err);
+    }
+  }
+
+  loadVideos();
+</script>
+
 
       <div class="card">
         <h3>Twitch</h3>
