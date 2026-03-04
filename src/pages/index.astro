@@ -1,15 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
 <Layout title="Kosher Tomfoolery | Play Smart. Build Better.">
-<section class="hero">
-  <h1>Kosher Tomfoolery</h1>
-  <p class="tagline">Play Smart. Build Better.</p>
 
-  <div class="cta-group">
-    <a href="#content" class="btn primary">Enter the Command Center</a>
-    <a href="https://twitch.tv/YOURCHANNEL" target="_blank" class="btn secondary">Watch Live</a>
-  </div>
-</section>
+  <section class="hero">
+    <h1>Kosher Tomfoolery</h1>
+    <p class="tagline">Play Smart. Build Better.</p>
+
+    <div class="cta-group">
+      <a href="#content" class="btn primary">Enter the Command Center</a>
+      <a href="https://twitch.tv/YOURCHANNEL" target="_blank" class="btn secondary">
+        Watch Live
+      </a>
+    </div>
+  </section>
+
+  <section id="content" class="content">
+    <h2>Command Center</h2>
+    <p class="section-sub">
+      Live streams. Tactical breakdowns. Strategic plays.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>YouTube</h3>
+        <p>Long-form breakdowns and gaming content.</p>
+      </div>
+
+      <div class="card">
+        <h3>Twitch</h3>
+        <p>Live gameplay and real-time strategy.</p>
+      </div>
+
+      <div class="card">
+        <h3>TikTok</h3>
+        <p>Clips, chaos, and sharp highlights.</p>
+      </div>
+    </div>
+  </section>
+
 </Layout>
-
 
 <style>
 .hero {
@@ -66,12 +97,8 @@
 }
 
 @keyframes glow {
-  from {
-    text-shadow: 0 0 5px #8b5cf6;
-  }
-  to {
-    text-shadow: 0 0 20px #8b5cf6;
-  }
+  from { text-shadow: 0 0 5px #8b5cf6; }
+  to { text-shadow: 0 0 20px #8b5cf6; }
 }
 
 .content {
@@ -114,6 +141,4 @@
 .card h3 {
   margin-bottom: 10px;
 }
-
-
 </style>
