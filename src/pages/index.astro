@@ -72,11 +72,18 @@ try {
         <p>Live gameplay and real-time strategy.</p>
       </div>
 
-      <div class="card">
-        <h3>TikTok</h3>
-        <p>Clips, chaos, and sharp highlights.</p>
-      </div>
-    </div>
+      <div class="video-section">
+  <h3>Live on Twitch</h3>
+
+  <div class="twitch-container">
+    <iframe
+      src="https://player.twitch.tv/?channel=koshertomfoolery&parent=koshertomfoolery-site.vercel.app"
+      height="480"
+      width="100%"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
   </section>
 
 </Layout>
@@ -90,6 +97,11 @@ try {
   align-items: center;
   text-align: center;
   padding: 40px 20px;
+}
+
+.twitch-container iframe {
+  border-radius: 12px;
+  border: none;
 }
 
 .tagline {
