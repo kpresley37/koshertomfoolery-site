@@ -48,18 +48,22 @@ try {
     <div class="video-section">
   <h3>YouTube</h3>
 
-  <div class="video-section">
-  <h3>YouTube</h3>
-
   <div class="video-grid">
     {latestVideos.map(video => {
-      const videoId = video["yt:videoId"];
-      return (
+      const videoId =
+        video?.["yt:videoId"] ||
+        video?.videoId ||
+        video?.id?.split(":").pop();
+
+      return videoId ? (
         <iframe
+          width="560"
+          height="315"
           src={`https://www.youtube.com/embed/${videoId}`}
+          frameborder="0"
           allowfullscreen>
         </iframe>
-      );
+      ) : null;
     })}
   </div>
 </div>
