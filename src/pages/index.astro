@@ -19,6 +19,7 @@ try {
     latestVideos = Array.isArray(entries)
       ? entries.slice(0, 3)
       : [entries].slice(0, 3);
+      console.log(JSON.stringify(latestVideos, null, 2));
   }
 } catch (error) {
   console.error("RSS Fetch Failed:", error);
