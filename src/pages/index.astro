@@ -1,20 +1,16 @@
----
-import Layout from "../layouts/Layout.astro";
----
+<section class="hero">
+  <h1>Kosher Tomfoolery</h1>
+  <p class="tagline">Play Smart. Build Better.</p>
 
-<Layout title="Kosher Tomfoolery | Play Smart. Build Better.">
-
-  <section class="hero">
-    <h1>Kosher Tomfoolery</h1>
-    <p class="tagline">Play Smart. Build Better.</p>
-  </section>
-
-</Layout>
-
+  <div class="cta-group">
+    <a href="#content" class="btn primary">Enter the Command Center</a>
+    <a href="https://twitch.tv/YOURCHANNEL" target="_blank" class="btn secondary">Watch Live</a>
+  </div>
+</section>
 <style>
 .hero {
   text-align: center;
-  padding: 140px 20px;
+  padding: 160px 20px;
 }
 
 .hero h1 {
@@ -26,6 +22,43 @@ import Layout from "../layouts/Layout.astro";
   font-size: 1.5rem;
   color: #8b5cf6;
   animation: glow 3s ease-in-out infinite alternate;
+  margin-bottom: 40px;
+}
+
+.cta-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primary {
+  background: #8b5cf6;
+  color: white;
+}
+
+.primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+.secondary {
+  border: 2px solid #8b5cf6;
+  color: #8b5cf6;
+}
+
+.secondary:hover {
+  background: #8b5cf6;
+  color: white;
+  transform: translateY(-3px);
 }
 
 @keyframes glow {
