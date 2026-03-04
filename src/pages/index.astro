@@ -5,14 +5,24 @@ import { XMLParser } from "fast-xml-parser";
 const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
 const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 
-const response = await fetch(rssUrl);
-const xml = await response.text();
+let latestVideos = [];
 
-const parser = new XMLParser();
-const json = parser.parse(xml);
+try {
+  const response = await fetch(rssUrl);
 
-const entries = json.feed.entry || [];
-const latestVideos = entries.slice(0, 3);
+  if (response.ok) {
+    const xml = await response.text();
+    const parser = new XMLParser();
+    const json = parser.parse(xml);
+
+    const entries = json?.feed?.entry || [];
+    latestVideos = Array.isArray(entries)
+      ? entries.slice(0, 3)
+      : [entries].slice(0, 3);
+  }
+} catch (error) {
+  console.error("RSS Fetch Failed:", error);
+}
 ---
 
 <Layout title="Kosher Tomfoolery | Play Smart. Build Better.">
