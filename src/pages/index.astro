@@ -23,6 +23,30 @@
   padding: 40px 20px;
 }
 
+<section id="content" class="content">
+  <h2>Command Center</h2>
+  <p class="section-sub">
+    Live streams. Tactical breakdowns. Strategic plays.
+  </p>
+
+  <div class="cards">
+    <div class="card">
+      <h3>YouTube</h3>
+      <p>Long-form breakdowns and gaming content.</p>
+    </div>
+
+    <div class="card">
+      <h3>Twitch</h3>
+      <p>Live gameplay and real-time strategy.</p>
+    </div>
+
+    <div class="card">
+      <h3>TikTok</h3>
+      <p>Clips, chaos, and sharp highlights.</p>
+    </div>
+  </div>
+</section>
+
 .tagline {
   font-size: 1.5rem;
   color: #8b5cf6;
@@ -73,5 +97,46 @@
   to {
     text-shadow: 0 0 20px #8b5cf6;
   }
+}
+
+.content {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.section-sub {
+  color: #aaa;
+  margin-bottom: 60px;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  padding: 30px;
+  border-radius: 12px;
+  width: 260px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: #8b5cf6;
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+}
+
+.card h3 {
+  margin-bottom: 10px;
 }
 </style>
