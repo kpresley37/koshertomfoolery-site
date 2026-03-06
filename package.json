@@ -14,6 +14,7 @@
     "@astrojs/sitemap": "^3.7.0",
     "astro": "^5.17.1",
     "fast-xml-parser": "^5.4.2",
-    "sharp": "^0.34.3"
+    "sharp": "^0.34.3",
+    "tsparticles": "^3.9.1"
   }
 }
