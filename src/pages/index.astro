@@ -20,15 +20,28 @@ try {
 }
 ---
 
-<Layout title="Kosher Tomfoolery | Play Smart. Build Better.">
+<Layout title="Kosher Tomfoolery | Calculated Chaos.">
 
   <section class="hero">
-    <h1>Kosher Tomfoolery</h1>
-    <p class="tagline">Play Smart. Build Better.</p>
+  <h1>KosherTomfoolery</h1>
+  <p class="tagline">Calculated Chaos</p>
+
+  <p class="brand-description">
+    KosherTomfoolery is a gaming channel built on calculated chaos,
+    ridiculous decisions, and the occasional moment of accidental brilliance.
+  </p>
+
+  <div class="cta-group">
+    <a href="#content" class="btn primary">Enter the Command Center</a>
+    <a href="https://twitch.tv/koshertomfoolery" target="_blank" class="btn secondary">Watch Live</a>
+  </div>
+</section>
+
+
 
     <div class="cta-group">
       <a href="#content" class="btn primary">Enter the Command Center</a>
-      <a href="https://twitch.tv/YOURCHANNEL" target="_blank" class="btn secondary">
+      <a href="https://twitch.tv/koshertomfoolery" target="_blank" class="btn secondary">
         Watch Live
       </a>
     </div>
@@ -36,6 +49,24 @@ try {
    
 
   </section>
+
+  <section class="featured">
+  <h2>Kosher Certified Tomfoolery</h2>
+  <p class="section-sub">
+    A perfectly executed moment of calculated chaos.
+  </p>
+
+  <div class="featured-video">
+    <iframe
+      width="800"
+      height="450"
+      src="https://www.youtube.com/embed/REPLACETHISSAM"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
 
   <div class="video-section">
   <h3>YouTube</h3>
@@ -117,6 +148,34 @@ try {
   border: none;
 }
 
+.brand-description {
+  max-width: 620px;
+  margin-top: 18px;
+  margin-bottom: 35px;
+  font-size: 1.1rem;
+  color: #bbb;
+  line-height: 1.6;
+}
+@keyframes glow {
+  from {
+    text-shadow: 0 0 6px #8b5cf6;
+  }
+  to {
+    text-shadow: 0 0 24px #8b5cf6;
+  }
+}
+
+.featured {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.featured-video iframe {
+  border-radius: 12px;
+  max-width: 100%;
+  border: none;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
 
 .tagline {
   font-size: 1.5rem;
