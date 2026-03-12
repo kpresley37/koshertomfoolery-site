@@ -96,32 +96,29 @@ import Layout from "../layouts/Layout.astro";
 
 async function loadVideos(){
 
-  const container = document.getElementById("youtube-videos")
+  const container = document.getElementById("youtube-videos");
 
-  const response = await fetch(
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UCqtCi9HzgtNrXlGJDHpPwpQ"
-  )
+  const response = await fetch("/api/youtube");
 
-  const xml = await response.text()
+  const videos = await response.json();
 
-  const matches = [...xml.matchAll(/<yt:videoId>(.*?)<\/yt:videoId>/g)]
+  container.innerHTML = "";
 
-  container.innerHTML = ""
+  videos.forEach(video => {
 
-  matches.slice(0,3).forEach(match => {
+    const iframe = document.createElement("iframe");
 
-    const iframe = document.createElement("iframe")
+    iframe.src = `https://www.youtube.com/embed/${video.videoId}`;
 
-    iframe.src = `https://www.youtube.com/embed/${match[1]}`
-    iframe.allowFullscreen = true
+    iframe.allowFullscreen = true;
 
-    container.appendChild(iframe)
+    container.appendChild(iframe);
 
-  })
+  });
 
 }
 
-window.addEventListener("load", loadVideos)
+window.addEventListener("load", loadVideos);
 
 </script>
 checkLive();

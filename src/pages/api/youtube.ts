@@ -3,24 +3,27 @@ export async function GET() {
   const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
 
   const response = await fetch(
-    `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
-    {
-      headers: {
-        "User-Agent": "Mozilla/5.0"
-      }
-    }
+    `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
   );
 
   const xml = await response.text();
 
-  const matches = [...xml.matchAll(/<yt:videoId>(.*?)<\/yt:videoId>/g)];
+  const ids = [];
 
-  const videos = matches.slice(0, 3).map(match => ({
-    videoId: match[1]
-  }));
+  const parts = xml.split("<yt:videoId>");
 
-  return new Response(JSON.stringify(videos), {
-    headers: { "Content-Type": "application/json" }
+  for (let i = 1; i < parts.length; i++) {
+
+    const id = parts[i].split("</yt:videoId>")[0];
+
+    ids.push({ videoId: id });
+
+  }
+
+  return new Response(JSON.stringify(ids.slice(0,3)), {
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
 
 }
