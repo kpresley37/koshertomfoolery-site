@@ -3,7 +3,12 @@ export async function GET() {
   const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
 
   const response = await fetch(
-    `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`
+    `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`,
+    {
+      headers: {
+        "User-Agent": "Mozilla/5.0"
+      }
+    }
   );
 
   const xml = await response.text();
