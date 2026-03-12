@@ -1,18 +1,41 @@
-import type { APIRoute } from "astro";
+export async function GET() {
 
-export const GET: APIRoute = async () => {
   const channelId = "UCqtCi9HzgtNrXlGJDHpPwpQ";
+
   const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
 
   try {
+
     const response = await fetch(rssUrl);
+
+    if (!response.ok) {
+      return new Response(JSON.stringify([]));
+    }
+
     const xml = await response.text();
 
-    return new Response(xml, {
-      status: 200,
-      headers: { "Content-Type": "text/plain" },
+    const videoIds = [...xml.matchAll(/<yt:videoId>(.*?)<\/yt:videoId>/g)]
+      .slice(0, 3)
+      .map(match => ({
+        videoId: match[1]
+      }));
+
+    return new Response(JSON.stringify(videoIds), {
+      headers: {
+        "Content-Type": "application/json"
+      }
     });
-  } catch (error) {
-    return new Response("Fetch failed", { status: 500 });
+
+  } catch (err) {
+
+    console.error("YouTube RSS failed:", err);
+
+    return new Response(JSON.stringify([]), {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
   }
-};
+
+}

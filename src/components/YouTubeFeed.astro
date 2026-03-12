@@ -1,0 +1,27 @@
+---
+const response = await fetch("https://www.youtube.com/feeds/videos.xml?channel_id=KosherTomfoolery");
+const text = await response.text();
+
+const parser = new DOMParser();
+const xml = parser.parseFromString(text, "text/xml");
+
+const entries = Array.from(xml.querySelectorAll("entry")).slice(0, 6);
+---
+
+<section>
+  <h2>Latest Videos</h2>
+
+  <div class="video-grid">
+    {entries.map(entry => {
+      const id = entry.querySelector("yt\\:videoId").textContent;
+      const title = entry.querySelector("title").textContent;
+
+      return (
+        <a href={`https://youtube.com/watch?v=${id}`} target="_blank">
+          <img src={`https://img.youtube.com/vi/${id}/hqdefault.jpg`} />
+          <p>{title}</p>
+        </a>
+      );
+    })}
+  </div>
+</section>
