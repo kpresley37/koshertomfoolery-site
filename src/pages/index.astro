@@ -94,29 +94,36 @@ import Layout from "../layouts/Layout.astro";
 
 <script is:inline>
 
-async function loadVideos() {
+async function loadVideos(){
 
-  const container = document.getElementById("youtube-videos");
+const container = document.getElementById("youtube-videos")
 
-  if (!container) return;
+const response = await fetch(
+"https://www.youtube.com/feeds/videos.xml?channel_id=UCqtCi9HzgtNrXlGJDHpPwpQ"
+)
 
-  const response = await fetch("/api/youtube");
-  const videos = await response.json();
+const text = await response.text()
 
-  container.innerHTML = "";
+const matches = [...text.matchAll(/<yt:videoId>(.*?)<\/yt:videoId>/g)]
 
-  videos.forEach(video => {
+matches.slice(0,3).forEach(match=>{
 
-    const iframe = document.createElement("iframe");
+const iframe=document.createElement("iframe")
 
-    iframe.src = `https://www.youtube.com/embed/${video.videoId}`;
-    iframe.allowFullscreen = true;
+iframe.src=`https://www.youtube.com/embed/${match[1]}`
 
-    container.appendChild(iframe);
+iframe.allowFullscreen=true
 
-  });
+container.appendChild(iframe)
+
+})
 
 }
+
+window.addEventListener("load",loadVideos)
+
+</script>
+
 
 window.addEventListener("load", loadVideos);
 
