@@ -20,7 +20,7 @@ export async function GET() {
 
   }
 
-  return new Response(JSON.stringify(ids.slice(0,3)), {
+  return new Response(JSON.stringify(ids), {
     headers: {
       "Content-Type": "application/json"
     }
